@@ -1,4 +1,4 @@
-# ttn-ulm-workshop
+# TTN Ulm Workshop
 
 
 ## Münster-Platine

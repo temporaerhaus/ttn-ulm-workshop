@@ -43,13 +43,13 @@ die die Schlüssel im Device verdrahtet.
 // ABP Methode
 //*****************
 // LoRaWAN NwkSKey = network session key, als MSB!!
-static const PROGMEM u1_t NWKSKEY[16] = { 0x6F, 0xFB, 0x60, 0xFE, 0x42, 0x3D, 0x1D, 0x49, 0xBF, 0x11, 0x5B, 0x1E, 0x63, 0xF7, 0x52, 0xBB }; // Hier...
+static const PROGMEM u1_t NWKSKEY[16] = ; // Hier...
 
 // LoRaWAN AppSKey = application session key, als MSB!!
-static const u1_t PROGMEM APPSKEY[16] = { 0x03, 0x87, 0xAA, 0x9E, 0xA3, 0x8C, 0x97, 0xB9, 0xA0, 0x12, 0x59, 0x02, 0xE3, 0x51, 0x77, 0xF5 }; // ...und hier
+static const u1_t PROGMEM APPSKEY[16] = ; // ...und hier
 
 // LoRaWAN DevAddr = end-device address
-static const u4_t DEVADDR = 0x26011025; // ... und hier.
+static const u4_t DEVADDR = ; // ... und hier.
 
 // Das sieht dann ungefähr so aus:
 //static const PROGMEM u1_t NWKSKEY[16] = { 0x1B, 0x1B, 0xF8, 0x14, 0x3B, 0x77, 0x26, 0x58, 0xF3, 0x88, 0x4E, 0x1C, 0xB1, 0xAB, 0x04, 0xGC };
@@ -68,14 +68,14 @@ void os_getDevKey (u1_t* buf) { }
 // OTAA Methode
 //*****************
 // Device EUI, als lsb
-static const u1_t PROGMEM DEVEUI[8] = { 0xFE, 0x27, 0x9C, 0x0D, 0xA5, 0x2F, 0xCE, 0x00 };
+static const u1_t PROGMEM DEVEUI[8] = ;
 void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
 
 // Application EUI, als lsb
-static const u1_t PROGMEM APPEUI[8] = { 0xD7, 0x4E, 0x01, 0xD0, 0x7E, 0xD5, 0xB3, 0x70 };
+static const u1_t PROGMEM APPEUI[8] = ;
 void os_getArtEui (u1_t* buf) { memcpy_P(buf, APPEUI, 8);}
 
-static const u1_t PROGMEM APPKEY[16] = { 0xC6, 0x3A, 0x30, 0xC7, 0x58, 0xB7, 0xCA, 0xA8, 0x67, 0x74, 0x71, 0x66, 0xA5, 0xB2, 0x44, 0x68 };
+static const u1_t PROGMEM APPKEY[16] = ;
 void os_getDevKey (u1_t* buf) { memcpy_P(buf, APPKEY, 16);}
 #endif
 

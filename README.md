@@ -16,6 +16,11 @@
 3. Wassersensor
 4. Bodenfeuchtesensor
 
+## Arduino IDE
+* Board einstellen
+    * Tools -> Board -> Arduino Pro or Pro Mini
+    * CPU: Atmega328, 3.3V, 8Mhz
+
 ## Code
 
 Folgender Code 

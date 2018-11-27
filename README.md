@@ -109,4 +109,22 @@ Es kann einer (oder mehrere) der oben genannten Sensoren ausgewählt und angesch
 ### Schritt 9:  Daten abrufen
 In der TTN Console können dann die versendeten Daten im Rohformat betrachtet werden (Tab *Data*).
 
+Um die Daten für den Menschen lesbar auszugeben, kann für die angelegte TTN App ein Payload Decoder angegeben werden:
 
+    function Decoder(bytes, port) {
+
+      var temp = (bytes[0] + (bytes[1] << 8) + (bytes[2] << 16)) / 100;
+      var pressure = (bytes[3] + (bytes[4] << 8) + (bytes[5] << 16)) / 100;
+      var hum = (bytes[6] + (bytes[7] << 8) + (bytes[8] << 16)) / 100;
+
+      var decoded = {};
+      decoded.temp = temp;
+      decoded.pressure = pressure;
+      decoded.hum = hum;
+
+      return decoded;
+    }
+
+Einzufügen unter *Payload Formats* in der Section *Decoder*.
+
+ 

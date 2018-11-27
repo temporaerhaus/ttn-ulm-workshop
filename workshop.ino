@@ -92,7 +92,7 @@ void os_getDevKey (u1_t* buf) { memcpy_P(buf, APPKEY, 16);}
 
 #define USE_MAGNET_SENSOR false
 #if USE_MAGNET_SENSOR == true
-#define MAGNET_SENSOR 3
+#define MAGNET_SENSOR_PIN 3
 #endif
 
 #define USE_BME280_SENSOR true
@@ -103,6 +103,10 @@ Adafruit_BME280 bme; // I2C
 #define SEALEVELPRESSURE_HPA (1010.00)
 #endif
 
+#define USE_MOIST_SENSOR false
+#if USE_MOIST_SENSOR == true
+#define MOIST_SENSOR_PIN A0
+#endif
 
 
 /* Sonstige Einstellungen
@@ -113,7 +117,11 @@ const unsigned TX_INTERVAL = 10;
 
 // Datenrate bzw. spreading factor:
 #define dataRate DR_SF7
-// Sendeleistung:
+// Sendeleistung:#define USE_MAGNET_SENSOR false
+#if USE_MAGNET_SENSOR == true
+#define MAGNET_SENSOR_PIN 3
+#endif
+
 int txPower = 14;
 
 // Pin-Zuordung für LoRa-Modul (RFM95):
@@ -203,42 +211,73 @@ void do_send(osjob_t* j){
         //*************************
         #if USE_WATER_SENSOR == true
         Serial.println(digitalRead(WATER_SENSOR_PIN));
+        int value = digitalRead(WATER_SENSOR_PIN);
+        byte payload[2];
+        payload[0] = highByte(value);
+        payload[1] = lowByte(value);
         #endif
 
         #if USE_MAGNET_SENSOR == true
-        if (digitalRead(MAGNET_SENSOR) == HIGH){
+        int value = -1;
+        if (digitalRead(MAGNET_SENSOR_PIN) == HIGH){
             Serial.println("Your Door is Open");
+            value = 1;
         } else {
             Serial.println("Your Door is Closed");
+            value = 0;
         }
+        byte payload[2];
+        payload[0] = highByte(value);
+        payload[1] = lowByte(value);
         #endif
 
         #if USE_BME280_SENSOR == true
+        float temp = bme.readTemperature();
         Serial.print("Temperature = ");
-        Serial.print(bme.readTemperature());
+        Serial.print(temp);
         Serial.println(" *C");
+        int32_t temp_int = temp * 100;
 
+        float pressure = bme.readPressure() / 100.0F;
         Serial.print("Pressure = ");
-
-        Serial.print(bme.readPressure() / 100.0F);
+        Serial.print(pressure);
         Serial.println(" hPa");
+        int32_t pressure_int = pressure * 100;
 
-        Serial.print("Approx. Altitude = ");
-        Serial.print(bme.readAltitude(SEALEVELPRESSURE_HPA));
-        Serial.println(" m");
+        //Serial.print("Approx. Altitude = ");
+        //Serial.print(bme.readAltitude(SEALEVELPRESSURE_HPA));
+        //Serial.println(" m");
 
+        float hum = bme.readHumidity();
         Serial.print("Humidity = ");
-        Serial.print(bme.readHumidity());
+        Serial.print(hum);
         Serial.println(" %");
+        int32_t hum_int = hum * 100;
+
+        byte payload[9];
+        payload[0] = temp_int;
+        payload[1] = temp_int >> 8;
+        payload[2] = temp_int >> 16;
+
+        payload[3] = pressure_int;
+        payload[4] = pressure_int >> 8;
+        payload[5] = pressure_int >> 16;
+
+        payload[6] = hum_int;
+        payload[7] = hum_int >> 8;
+        payload[8] = hum_int >> 16;
         #endif
 
-        int aNumber = 16153;            // Höhe des Ulmer Münsters in cm.
-                                        // 16153 entspricht 3F19 in hexadezimaler Darstellung
-
+        #if USE_MOIST_SENSOR == true
+        Serial.println(digitalRead(MOIST_SENSOR_PIN));
+        int value = analogRead(MOIST_SENSOR_PIN);
         byte payload[2];
-        payload[0] = highByte(aNumber);
-        payload[1] = lowByte(aNumber);
+        payload[0] = highByte(value);
+        payload[1] = lowByte(value);
+        #endif
 
+
+        // Daten senden
         LMIC_setTxData2(1, (uint8_t*)payload, sizeof(payload), 0);
 
         Serial.println(F("Packet queued"));
@@ -257,7 +296,7 @@ void setup() {
     #endif
 
     #if USE_MAGNET_SENSOR == true
-    pinMode(MAGNET_SENSOR, INPUT_PULLUP);
+    pinMode(MAGNET_SENSOR_PIN, INPUT_PULLUP);
     #endif
 
     #if USE_BME280_SENSOR == true
@@ -267,6 +306,10 @@ void setup() {
         Serial.println("Could not find a valid BME280 sensor, check wiring!");
         while (1);
     }
+    #endif
+
+    #if USE_MOIST_SENSOR == true
+    pinMode(MOIST_SENSOR_PIN, INPUT);
     #endif
 
 

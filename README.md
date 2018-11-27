@@ -111,6 +111,8 @@ In der TTN Console können dann die versendeten Daten im Rohformat betrachtet we
 
 Um die Daten für den Menschen lesbar auszugeben, kann für die angelegte TTN App ein Payload Decoder angegeben werden:
 
+Für den BME280 Sensor:
+
     function Decoder(bytes, port) {
 
       var temp = (bytes[0] + (bytes[1] << 8) + (bytes[2] << 16)) / 100;
@@ -125,6 +127,16 @@ Um die Daten für den Menschen lesbar auszugeben, kann für die angelegte TTN Ap
       return decoded;
     }
 
+Für die anderen Sensoren:
+
+    function Decoder(bytes, port) {
+      var batt = (bytes[0] << 8) | bytes[1];
+      var decoded = {};
+      decoded.value = value;
+      return decoded;
+    }
+
 Einzufügen unter *Payload Formats* in der Section *Decoder*.
 
  
+

@@ -1,22 +1,23 @@
 # TTN Ulm Workshop
 
-
-## Accounts
-
-Zum Abruf der über LoRaWAN übertragenen Daten nutzen wir das The Things Network, kurz TTN. Dort ist ein Account nötig, der auf dieser Seite erstellt werden kann: https://account.thethingsnetwork.org/register. Es können beliebige, auch anonymisierte Daten verwendet werden.
+Dieses Dokument begleitet unsere Ulmer LoRaWAN Workshop mit hilfreichen Informationen und begleitenden Anleitungen zur Soft- und Hardware sowie den benötigten Accounts bei TTN. 
 
 
 
+## Die Münster-Platine
 
-## Münster-Platine
+Unsere Münster-Platine ist eine LoRaWAN Node zum Übersenden von (in der Regel) Messdaten von Sensoren über ein LoRaWAN Netzwerk. In Ulm ist ein solches Netzwerk vorhanden (via mehreren Basisstationen in der Stadt), sowie auch in vielen anderen Städten und Ballungsgebieten und Deutschland und weltweit. [Diese Karte](https://www.thethingsnetwork.org/map) gibt einen Überblick. 
 
-- Flashen (Datenübertragung) und Laden
-- Laden mit USB
-- Akku via JST Stecker
-- Arduino Pro Mini
-- RFM95 für Lora
+Unsere Platine hat folgende Features:
 
-### Sensoren
+- Flashen (Datenübertragung) von Software via USB
+- Laden des Akkus via USB
+- Akku-Anschluss via JST Stecker
+- Arduino Pro Mini (Atmel328) Mikrokontroller
+- RFM95 LoRaWAN Chip
+- Eine ungewöhnliche Form
+
+### Sensoren im Workshop
 
 Ein kurzer Überblick über die Sensoren und Anschlüsse an den Arduino Pro Mini. 
 

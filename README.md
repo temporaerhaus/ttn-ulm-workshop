@@ -65,7 +65,7 @@ Unser Workshop im Überblick:
 7. Sketch in Arduino IDE laden, Keys einfügen und auf Sensor anpassen (einfaches auskommentieren)
 8. Flashen
 9. Ankommende Daten in der TTN Console betrachten und ggf. konvertieren
-
+10. TTN für daheim: eine Anwendung für daheim bauen
 Die folgenden Schritte sind absichtlich sehr kurz gehalten, manche Details sind dabei sicherlich erst unklar. Nachfragen hierzu können gerne direkt im Workshop gestellt werden. 
 
 ### Schritt 1: Vortrag
@@ -128,6 +128,16 @@ Für den BME280 Sensor:
       return decoded;
     }
 
+Für den Regen- bzw. Wassersensor:
+
+    function Decoder(bytes, port) {
+      var batt = (bytes[0] << 8) | bytes[1];
+      var decoded = {};
+      decoded.bat = bat;
+      if ( bytes[3] ) decoded.triggered = 1;
+      return decoded;
+    }
+
 Für die anderen Sensoren:
 
     function Decoder(bytes, port) {
@@ -140,4 +150,24 @@ Für die anderen Sensoren:
 Einzufügen unter *Payload Formats* in der Section *Decoder*. Danach erscheinen die Daten gut lesbar in der Console.
 
  
+### Schritt 10: Mit nach Hause nehmen
+
+Nachdem nach Schritt 9 gezeigt wurde, wie man die empfangenen Daten mit ein bisschen Fachwissen ansprechend aufbereitet darstellen kann, wollen wir uns nun mit einer leicht zu erstellenden Anwendung für daheim auseinander setzen. 
+Dazu werden wir auf die empfangenen Daten mittels IFTTT (= If This Than That), einer Webschnittstelle reagieren. IFTTT ist dabei besonders einfach gehalten, um auch weniger technisch orientierten Menschen eine leichte Anwendung zu ermöglichen. 
+Zunächst muss allerdings ein Accounts auf deren website erstellt werden.
+Dazu wird diese [Seite](https://ifttt.com/join) besucht und unten auf *Sing Up* geklickt. 
+
+Nachdem ein Account angelegt wurde, kann ein neues *Applett* erzeugt werden. Dazu muss auf *My Appletts* -> *New Applett* geklickt werden. 
+Jetzt kann nach dem Prinzip "Wenn das passiert, dann soll etwas anderes passieren" eine Anwendung erstellt werden. 
+In unserem Fall ist "this" ein sog. Webhook. Also muss mit dem Suchfeld nach *Webhook* gesucht werden. 
+Nachdem auf *weiter* geklickt wurde, muss nun ein Name für das Event vergeben werden, das man abfangen möchte. Als Beispiel etwa *waschmaschine_leckt*.
+
+Nach einem Klick auf *next*, kann nun ausgewählt werden, was passiert, wenn das Event eintritt. Man kann sich bspw. eine Mail senden lassen oder aber auch eine SMS bekommen. In unserem Beispiel wählen wir *Email* aus. 
+Hier kann man nun die Nachricht anpassen, die geschickt wird. 
+
+Der eine Teil ist nun geschafft. Nun müssen die Daten aus dem TTN zu IFTTT. Dazu klickt man in der [TTN-Console](https://console.thethingsnetwork.com) auf seine *Application* und dann auf *Integrations*->*Add Integration*. Hier wählt man den *IFTTT Maker*-Eintrag aus. Für *Process ID* und *Event Name* tragen wir das gelcihe ein, wir weiter oben als *Event Name* verwendet haben. Also bspw. *waschmaschine_leckt*.
+wir benötigen noch einen Key, der es dem TTN ermöglicht, Daten an IFTTT zu schicken. Diesen finden wir unter [Documentation](https://maker.ifttt.com/use/) im Webinterface von IFTTT. Dieser wird einfach in das Feld *Key* kopiert. 
+Zu guter Letzt muss noch angegeben werden, welche Werte das TTN-Backend zu IFTTT schicken soll. Für die Waschmaschine ist das *triggered*.
+Für den BME280 kann man sich entweder einen Wert aussuchen, oder man sendet alle drei. Dann muss in jedes *Value* Feld jeweils *temp*, *pressure* und *hum* eingetragen werden.
+
 

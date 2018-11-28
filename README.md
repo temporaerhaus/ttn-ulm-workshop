@@ -42,7 +42,7 @@ Die Arduino IDE dient der Programmierung der Münsterplatine bzw. genauer dem Ar
     * Tools -> Board, Dann dort *Arduino Pro or Pro Mini*
     * CPU: *Atmega328, 3.3V, 8Mhz*
 
-Danach wird der Code in [diesem Sketch](https://github.com/verschwoerhaus/ttn-ulm-workshop/blob/master/workshop.ino), oder siehe nächster Abschnitt, in die Arduino IDE eingefügt. Eventuell dort schon vorhandener Code kann gelöscht werden.
+Danach wird der Code in [diesem Sketch](https://github.com/verschwoerhaus/ttn-ulm-workshop/blob/master/workshop.ino), oder siehe nächster Abschnitt, in die Arduino IDE eingefügt (copy & paste). Eventuell dort schon vorhandener Code kann gelöscht werden.
 
 ### Code
 
@@ -66,10 +66,11 @@ Unser Workshop im Überblick:
 8. Flashen
 9. Ankommende Daten in der TTN Console betrachten und ggf. konvertieren
 
+Die folgenden Schritte sind absichtlich sehr kurz gehalten, manche Details sind dabei sicherlich erst unklar. Nachfragen hierzu können gerne direkt im Workshop gestellt werden. 
 
 ### Schritt 1: Vortrag
 
-Die Folien gibt es nach Nachlesen [hier](todo)
+Die Folien gibt es zum nach Nachlesen (nach dem Workshop) [hier](todo).
 
 ###  Schritt 2 und 3: Löten
 Es müssen drei Komponenten aufgelötet werden:
@@ -136,7 +137,7 @@ Für die anderen Sensoren:
       return decoded;
     }
 
-Einzufügen unter *Payload Formats* in der Section *Decoder*.
+Einzufügen unter *Payload Formats* in der Section *Decoder*. Danach erscheinen die Daten gut lesbar in der Console.
 
  
 

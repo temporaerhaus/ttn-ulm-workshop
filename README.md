@@ -30,7 +30,7 @@ Ein kurzer Überblick über die verwendeten Sensoren und Anschlüsse im Workshop
 3. Wassersensor - Regen, Überschwemmung, etc.
     * Anschliesen: Gelb an Pin 2, Rot an VCC, Schwarz an GND. Weiss nicht anschließen.
 4. Bodenfeuchtesensor - Feuchtigkeit in Blumenerde, etc.
-    * Anschliesen: Geld an PIN 7, Rot an VCC, Schwarz an GND.
+    * Anschliesen: Gelb an PIN 7, Rot an VCC, Schwarz an GND.
 
 Alle Sensoren werden über kleine Käbelchen (Jumper-Wires) an den Arduino, das ist der blaue Baustein auf der Platine, angeschlossen. Die Verdrahtung ("was an was") ist oben kurz beschrieben.
 

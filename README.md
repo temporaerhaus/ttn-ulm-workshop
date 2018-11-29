@@ -131,9 +131,9 @@ Für den BME280 Sensor:
 Für den Regen- bzw. Wassersensor:
 
     function Decoder(bytes, port) {
-      var batt = (bytes[0] << 8) | bytes[1];
+      var value = (bytes[0] << 8) | bytes[1];
       var decoded = {};
-      decoded.bat = bat;
+      decoded.value = value;
       if ( bytes[3] ) decoded.triggered = 1;
       return decoded;
     }
@@ -141,7 +141,7 @@ Für den Regen- bzw. Wassersensor:
 Für die anderen Sensoren:
 
     function Decoder(bytes, port) {
-      var batt = (bytes[0] << 8) | bytes[1];
+      var value = (bytes[0] << 8) | bytes[1];
       var decoded = {};
       decoded.value = value;
       return decoded;

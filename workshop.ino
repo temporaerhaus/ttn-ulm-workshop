@@ -87,12 +87,12 @@ void os_getDevKey (u1_t* buf) { memcpy_P(buf, APPKEY, 16);}
 
 #define USE_WATER_SENSOR false
 #if USE_WATER_SENSOR == true
-#define WATER_SENSOR_PIN 2
+#define WATER_SENSOR_PIN 7
 #endif
 
 #define USE_MAGNET_SENSOR false
 #if USE_MAGNET_SENSOR == true
-#define MAGNET_SENSOR_PIN 3
+#define MAGNET_SENSOR_PIN 8
 #endif
 
 #define USE_BME280_SENSOR true

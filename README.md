@@ -24,7 +24,7 @@ Unsere Platine hat folgende Features:
 Ein kurzer Überblick über die verwendeten Sensoren und Anschlüsse im Workshop.  Wir haben aktuell vier verschiedene Sensoren, ausgesucht im einen halbwegs breiten Anwendungszweck abzudecken. 
 
 1. BME280 - Temperatur, Luftdruck, Luftfeuchtigkeit
-    * Anschließen: VIN an VCC, GND an GND, SCL an PIN 5, SDA an Pin 4.
+    * Anschließen: VIN an VCC, GND an GND, SCL an PIN A5, SDA an Pin A4 (die beiden innenliegenden PINs).
 2. Magnetschalter - Tür auf/zu, etc.
     * Anschließen: Ein Kabel an Pin 3, das andere an GND. 
 3. Wassersensor - Regen, Überschwemmung, etc.

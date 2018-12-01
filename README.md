@@ -26,7 +26,7 @@ Ein kurzer Überblick über die verwendeten Sensoren und Anschlüsse im Workshop
 1. BME280 - Temperatur, Luftdruck, Luftfeuchtigkeit
     * Anschließen: VIN an VCC, GND an GND, SCL an PIN A5, SDA an Pin A4 (die beiden innenliegenden PINs).
 2. Magnetschalter - Tür auf/zu, etc.
-    * Anschließen: Ein Kabel an Pin 3, das andere an GND. 
+    * Anschließen: Ein Kabel an Pin 8, das andere an GND. 
 3. Wassersensor - Regen, Überschwemmung, etc.
     * Anschliesen: Gelb an Pin 2, Rot an VCC, Schwarz an GND. Weiss nicht anschließen.
 4. Bodenfeuchtesensor - Feuchtigkeit in Blumenerde, etc.

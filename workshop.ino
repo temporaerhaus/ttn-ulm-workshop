@@ -118,11 +118,7 @@ const unsigned TX_INTERVAL = 10;
 
 // Datenrate bzw. spreading factor:
 #define dataRate DR_SF7
-// Sendeleistung:#define USE_MAGNET_SENSOR false
-#if USE_MAGNET_SENSOR == true
-#define MAGNET_SENSOR_PIN 3
-#endif
-
+// Sendeleistung:
 int txPower = 14;
 
 // Pin-Zuordung für LoRa-Modul (RFM95):
